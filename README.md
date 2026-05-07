@@ -13,6 +13,7 @@ All:
 8. chat
    
 Vendor:
+
 9. Portfolio; Vendors need portfolio to be able to verify themselves to the admin. Without it, they cannot request for verification
 10. Verification: To prove that the vendors are legit, they have to verify themselves to the admin. Without it, they won't get any opportunity to get shown on browsing page or take any order.
 11. photography vendor + venue vendor: They can either create packages that a client can take, or list up their facilities with hourly rate for the client to choose
