@@ -22,6 +22,7 @@ Vendor:
 14. collab: Vendors can collab with each other to create offered packages(upto 2 vendors of any category)
 
 Client:
+
 15. Event creating and management: Host can request to book vendors based on their availablility
 16. Event timeline+notification
 17. Private guestlist + custom invitation sending option
