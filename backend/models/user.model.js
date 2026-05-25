@@ -39,7 +39,7 @@ import mongoose from "mongoose";
         default: "none",
       },
 
-      // ⭐ ADD THIS
+      // ADD THIS
       starredVendors: [
         {
           type: mongoose.Schema.Types.ObjectId,

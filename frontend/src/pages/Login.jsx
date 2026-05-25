@@ -21,10 +21,10 @@ const handleSubmit = async (e) => {
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("user", JSON.stringify(res.data.user));
 
-    // 🔥 IMPORTANT: update Navbar instantly
+    // IMPORTANT: update Navbar instantly
     window.dispatchEvent(new Event("storage"));
 
-    // 🔥 ROLE-BASED REDIRECT
+    // ROLE-BASED REDIRECT
     const role = res.data.user.role;
 
     if (role === "admin") {
@@ -43,12 +43,12 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container auth-shell">
+      <div className="card auth-card">
         <h2>Welcome Back</h2>
         <p>Login to Planit</p>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form">
           <input
             type="text"
             placeholder="Email or Phone"

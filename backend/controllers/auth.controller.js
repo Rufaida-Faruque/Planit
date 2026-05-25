@@ -14,7 +14,7 @@ export const register = async (req, res) => {
   try {
     const { name, email, phone, password, role } = req.body;
 
-    // ❌ BLOCK ADMIN REGISTRATION
+    //  BLOCK ADMIN REGISTRATION
     if (role === "admin") {
       return res.status(403).json({
         message: "Not allowed to register as admin",
@@ -87,7 +87,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // ✅ ADMIN LOGIN
+    //  ADMIN LOGIN
     if (identifier === ADMIN_EMAIL) {
       const isMatch = await bcrypt.compare(password, ADMIN_PASSWORD);
 
@@ -113,7 +113,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // ✅ NORMAL USER LOGIN
+    //  NORMAL USER LOGIN
     const user = await User.findOne({
       $or: [{ email: identifier }, { phone: identifier }],
     });
@@ -222,7 +222,7 @@ export const resetPassword = async (req, res) => {
       });
     }
 
-    // 🔥 ENSURE OTP WAS VERIFIED (basic protection)
+    //  ENSURE OTP WAS VERIFIED (basic protection)
     if (!user.otp || user.otp_expiry < Date.now()) {
       return res.status(400).json({
         message: "OTP not verified or expired",

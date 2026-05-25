@@ -1,20 +1,29 @@
 import nodemailer from "nodemailer";
 import { EMAIL_USER, EMAIL_PASS } from "../config.js";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: EMAIL_USER,
-    pass: EMAIL_PASS,
-  },
-});
+const transporter =
+  EMAIL_USER && EMAIL_PASS
+    ? nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: EMAIL_USER, pass: EMAIL_PASS },
+      })
+    : null;
+
+const ensureMailer = () => {
+  if (!transporter) {
+    throw new Error(
+      "Email is not configured. Set EMAIL_USER and EMAIL_PASS in backend/.env"
+    );
+  }
+  return transporter;
+};
 
 export const sendGuestPhotoShareEmail = async ({
   to,
   eventTitle,
   shareUrl,
 }) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Share photos — ${eventTitle}`,
@@ -28,7 +37,7 @@ export const sendPhotoZipEmail = async ({
   zipBuffer,
   filename,
 }) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Your guest photos — ${eventTitle}`,
@@ -47,7 +56,7 @@ export const sendPhotoZipReadyNoAttachmentEmail = async ({
   eventTitle,
   downloadHint,
 }) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Your guest photos — ${eventTitle}`,
@@ -56,7 +65,7 @@ export const sendPhotoZipReadyNoAttachmentEmail = async ({
 };
 
 export const sendOtpEmail = async (to, otp) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: "Your OTP Code",
@@ -69,7 +78,7 @@ export const sendSignupConfirmationEmail = async ({
   eventTitle,
   qrCode,
 }) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Registration Confirmed: ${eventTitle}`,
@@ -82,7 +91,7 @@ export const sendQrReminderEmail = async ({
   eventTitle,
   qrCode,
 }) => {
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Reminder: QR Pass for ${eventTitle}`,
@@ -106,7 +115,7 @@ export const sendInvitationCardEmail = async ({
     });
   }
 
-  await transporter.sendMail({
+  await ensureMailer().sendMail({
     from: EMAIL_USER,
     to,
     subject: `Invitation: ${eventTitle}`,

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
+import { assetUrl } from "../../config/api.js";
 
 export default function VendorServiceCatalogEditor({ portfolio, onSaved }) {
   const [msg, setMsg] = useState("");
@@ -504,7 +505,6 @@ function PhotoEditor({ initial, onSave, msg }) {
 }
 
 function DecorationEditor({ initial, onSave, msg }) {
-  const apiOrigin = (axios.defaults.baseURL || "").replace(/\/api\/?$/, "") || "http://localhost:5000";
   const [packages, setPackages] = useState(initial.packages || []);
   const [singleItems, setSingleItems] = useState(
     initial.singleItems || initial.galleryItems || []
@@ -596,7 +596,7 @@ function DecorationEditor({ initial, onSave, msg }) {
               {(p.inclusionPictures || []).map((u, picIdx) => (
                 <div key={`${u}-${picIdx}`} style={{ border: "1px solid #e5e7eb", borderRadius: "8px", padding: "6px" }}>
                   <img
-                    src={u.startsWith("http") ? u : `${apiOrigin}${u}`}
+                    src={assetUrl(u)}
                     alt={`Inclusion ${picIdx + 1}`}
                     style={{ width: "92px", height: "72px", objectFit: "cover", borderRadius: "6px" }}
                   />
@@ -685,7 +685,7 @@ function DecorationEditor({ initial, onSave, msg }) {
           {g.imageUrl ? (
             <div style={{ display: "flex", flexDirection: "column", gap: "6px", justifyContent: "end" }}>
               <img
-                src={g.imageUrl.startsWith("http") ? g.imageUrl : `${apiOrigin}${g.imageUrl}`}
+                src={assetUrl(g.imageUrl)}
                 alt={g.name || "Item"}
                 style={{ width: "92px", height: "72px", objectFit: "cover", borderRadius: "6px", border: "1px solid #e5e7eb" }}
               />

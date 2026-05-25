@@ -211,7 +211,7 @@
 //           {/* LOGO PREVIEW */}
 //           {form.logo && (
 //             <img
-//               src={`http://localhost:5000${form.logo}`}
+//               src={assetUrl(form.logo)}
 //               alt="logo"
 //               width="100"
 //             />
@@ -288,7 +288,7 @@
 
 //                   {block.value && (
 //                     <img
-//                       src={`http://localhost:5000${block.value}`}
+//                       src={assetUrl(block.value)}
 //                       alt=""
 //                       width="150"
 //                     />
@@ -350,7 +350,7 @@
 //       {/* LOGO */}
 //       {portfolio.logo ? (
 //         <img
-//           src={`http://localhost:5000${portfolio.logo}`}
+//           src={assetUrl(portfolio.logo)}
 //           alt="logo"
 //           style={{
 //             width: "100px",
@@ -419,7 +419,7 @@
 //           {/* IMAGE */}
 //           {block.type === "image" && (
 //             <img
-//               src={`http://localhost:5000${block.value}`}
+//               src={assetUrl(block.value)}
 //               alt=""
 //               style={{
 //                 width: "100%",
@@ -456,6 +456,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
+import { assetUrl } from "../../config/api.js";
 
 const Portfolio = () => {
   const [portfolio, setPortfolio] = useState(null);
@@ -471,7 +472,7 @@ const Portfolio = () => {
 
   const token = localStorage.getItem("token");
 
-  // ✅ SINGLE CATEGORY ONLY
+  //SINGLE CATEGORY ONLY
   const CATEGORY_OPTIONS = [
     "photography",
     "catering",
@@ -691,7 +692,7 @@ const Portfolio = () => {
 
           {form.logo && (
             <img
-              src={`http://localhost:5000${form.logo}`}
+              src={assetUrl(form.logo)}
               alt="logo"
               width="100"
               style={{
@@ -785,7 +786,7 @@ const Portfolio = () => {
 
                   {block.value && (
                     <img
-                      src={`http://localhost:5000${block.value}`}
+                      src={assetUrl(block.value)}
                       alt=""
                       width="150"
                       style={{
@@ -866,7 +867,7 @@ const Portfolio = () => {
       >
         {portfolio.logo && (
           <img
-            src={`http://localhost:5000${portfolio.logo}`}
+            src={assetUrl(portfolio.logo)}
             alt="logo"
             style={{
               width: "100px",
@@ -965,7 +966,7 @@ const Portfolio = () => {
 
           {block.type === "image" && (
             <img
-              src={`http://localhost:5000${block.value}`}
+              src={assetUrl(block.value)}
               alt=""
               style={{
                 width: "100%",

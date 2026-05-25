@@ -6,7 +6,7 @@ import {
   buildVenueOpenDayRows,
 } from "../../utils/venueAvailability.js";
 
-const apiOrigin = (import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api").replace(/\/api\/?$/, "");
+import { assetUrl } from "../../config/api.js";
 const PHOTOBOOTH_WINDOW_SHAPE_OPTIONS = ["Square", "Rectangle", "Circle"];
 const PHOTOBOOTH_WINDOW_POSITION_OPTIONS = ["Center", "Left", "Right"];
 const PHOTOBOOTH_WRITING_POSITION_OPTIONS = [
@@ -517,11 +517,7 @@ export default function ServiceSelectionPanel({
             </label>
             {singleItems[value.singleItemIndex ?? 0]?.imageUrl ? (
               <img
-                src={
-                  String(singleItems[value.singleItemIndex ?? 0].imageUrl || "").startsWith("http")
-                    ? singleItems[value.singleItemIndex ?? 0].imageUrl
-                    : `${apiOrigin}${singleItems[value.singleItemIndex ?? 0].imageUrl}`
-                }
+                src={assetUrl(singleItems[value.singleItemIndex ?? 0].imageUrl)}
                 alt={singleItems[value.singleItemIndex ?? 0].name || "Decoration item"}
                 style={{
                   width: "140px",

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import { sseUrl } from "../config/api.js";
 
 import Overview from "./client/Overview";
 import Events from "./client/Events";
@@ -40,7 +41,7 @@ const ClientDashboard = () => {
     if (!token) return;
 
     const stream = new EventSource(
-      `http://localhost:5000/api/notifications/stream?token=${token}`
+      sseUrl(`/api/notifications/stream?token=${encodeURIComponent(token)}`)
     );
     stream.addEventListener("notification", () => {
       fetchNotifications();

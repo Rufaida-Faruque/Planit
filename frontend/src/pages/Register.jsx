@@ -142,16 +142,16 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container auth-shell">
+      <div className="card auth-card">
         <h2>Create Account</h2>
 
-        <div>
+        <div className="auth-toggle">
           <button onClick={() => setMethod("email")}>Email</button>
           <button onClick={() => setMethod("phone")}>Phone</button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="auth-form">
           <input
             type="text"
             placeholder="Name"

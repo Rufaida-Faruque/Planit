@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
+import { sseUrl } from "../config/api.js";
 
 import Overview from "./vendor/Overview";
 import Portfolio from "./vendor/Portfolio";
@@ -23,7 +24,7 @@ const VendorDashboard = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
     const stream = new EventSource(
-      `http://localhost:5000/api/notifications/stream?token=${token}`
+      sseUrl(`/api/notifications/stream?token=${encodeURIComponent(token)}`)
     );
     stream.addEventListener("notification", () => {
       fetchNotifications();

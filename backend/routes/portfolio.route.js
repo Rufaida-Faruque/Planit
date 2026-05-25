@@ -69,7 +69,7 @@ import {
   getPortfolioByVendor,
   deletePortfolio,
   restorePortfolio,
-  browsePortfolios, // ✅ ADD THIS
+  browsePortfolios, // ADD THIS
   updatePortfolioAvailability,
 } from "../controllers/portfolio.controller.js";
 
@@ -90,7 +90,7 @@ router.patch(
 
 // ================= PUBLIC =================
 
-// ✅ BROWSE (VERY IMPORTANT)
+// BROWSE (VERY IMPORTANT)
 router.get("/browse", browsePortfolios);
 
 // View single vendor portfolio

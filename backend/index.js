@@ -1,7 +1,7 @@
 
 import express from "express";
 import cors from "cors";
-import { PORT, FRONTEND_URL } from "./config.js";
+import { PORT, FRONTEND_URL, MONGO_URI, JWT_SECRET } from "./config.js";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.route.js";
 
@@ -59,8 +59,17 @@ app.use("/api/invoices", invoiceRoutes);
 app.use("/api/collabs", collabRoutes);
 
 
+if (!MONGO_URI) {
+  console.error("Missing MONGO_URI — copy backend/.env.example to backend/.env");
+  process.exit(1);
+}
+if (!JWT_SECRET) {
+  console.warn("Warning: JWT_SECRET is not set — auth will fail.");
+}
+
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+    console.log(`CORS allowed: ${[...allowedOrigins].join(", ")}`);
   });
 });

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "../../api/axios";
+import { API_ORIGIN } from "../../config/api.js";
 import ServiceSelectionPanel from "../../components/client/ServiceSelectionPanel.jsx";
 import {
   computeExpectedCost,
@@ -356,10 +357,7 @@ const EventDetails = ({ event, goBack }) => {
 
   const pastDeadline = useMemo(() => isEventPastDeadline(data?.date), [data?.date]);
 
-  const apiOrigin = useMemo(() => {
-    const base = axios.defaults.baseURL || "";
-    return base.replace(/\/api\/?$/, "") || "http://localhost:5000";
-  }, []);
+  const apiOrigin = API_ORIGIN;
 
   const appOrigin = useMemo(() => {
     const envOrigin = (import.meta.env.VITE_PUBLIC_APP_ORIGIN || "").trim();

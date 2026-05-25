@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "../../api/axios";
+import { sseUrl } from "../../config/api.js";
 
 const roomKey = (eventId, otherUserId) => `${eventId}::${otherUserId}`;
 
@@ -19,7 +20,7 @@ const Messages = () => {
     const token = localStorage.getItem("token");
     if (!token) return;
     const stream = new EventSource(
-      `http://localhost:5000/api/messages/stream?token=${token}`
+      sseUrl(`/api/messages/stream?token=${encodeURIComponent(token)}`)
     );
     stream.addEventListener("message", () => {
       fetchRooms();

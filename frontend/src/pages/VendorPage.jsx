@@ -51,7 +51,7 @@
 //               {block.type === "text" && <p>{block.value}</p>}
 //               {block.type === "image" && (
 //                 <img
-//                   src={`http://localhost:5000${block.value}`}
+//                   src={assetUrl(block.value)}
 //                   width="300"
 //                 />
 //               )}
@@ -79,6 +79,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../api/axios";
+import { assetUrl } from "../config/api.js";
 
 const buildMonthDays = (year, month) => {
   const daysInMonth = new Date(
@@ -187,7 +188,7 @@ const VendorPage = () => {
           {block.type === "image" &&
             block.value && (
               <img
-                src={`http://localhost:5000${block.value}`}
+                src={assetUrl(block.value)}
                 alt="portfolio item"
                 style={{
                   width: "100%",

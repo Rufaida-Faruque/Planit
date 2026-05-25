@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../../api/axios";
+import { assetUrl } from "../../config/api.js";
 
 function resolvePosterBannerSrc(url) {
-  const u = (url || "").trim();
-  if (!u) return "";
-  if (u.startsWith("http")) return u;
-  const base =
-    String(axios.defaults.baseURL || "").replace(/\/api\/?$/, "") ||
-    "http://localhost:5000";
-  return `${base}${u.startsWith("/") ? u : `/${u}`}`;
+  return assetUrl((url || "").trim());
 }
 
 const PublicEvent = () => {

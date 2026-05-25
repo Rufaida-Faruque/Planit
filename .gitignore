@@ -2,18 +2,26 @@ node_modules/
 backend/node_modules/
 frontend/node_modules/
 
-# Environment secrets
+# Environment secrets (keep examples)
 .env
-.env.*
+.env.local
+.env.production
 backend/.env
-backend/.env.*
+backend/.env.local
 frontend/.env
-frontend/.env.*
+frontend/.env.local
+!.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# User uploads (generated at runtime)
+uploads/
 
 # Build outputs
 dist/
 build/
 coverage/
+frontend/dist/
 
 # Logs
 *.log

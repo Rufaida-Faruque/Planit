@@ -49,8 +49,8 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container auth-shell">
+      <div className="card auth-card">
         <h2>Forgot Password</h2>
 
         {/* STEP 1 */}

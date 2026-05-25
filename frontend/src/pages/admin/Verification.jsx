@@ -229,7 +229,7 @@ const VerificationPanel = () => {
                 {v.files.map((file, i) => (
                   <div key={i}>
                     <a
-                      href={`http://localhost:5000${file}`}
+                      href={assetUrl(file)}
                       target="_blank"
                       rel="noreferrer"
                     >

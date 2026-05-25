@@ -35,22 +35,15 @@ const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="container">
-      <div className="card">
+    <div className="container auth-shell">
+      <div className="card auth-card landing-card">
         <h1>Planit</h1>
-        <p>Plan your events effortlessly</p>
-
-        <button onClick={() => navigate("/register")}>
-          Register
-        </button>
-
-        <button onClick={() => navigate("/login")}>
-          Login
-        </button>
-
-        <button onClick={() => navigate("/home")}>
-          Continue as Guest
-        </button>
+        <p>Design, coordinate, and deliver events beautifully.</p>
+        <div className="landing-actions">
+          <button onClick={() => navigate("/register")}>Create account</button>
+          <button onClick={() => navigate("/login")}>Login</button>
+          <button onClick={() => navigate("/home")}>Continue as Guest</button>
+        </div>
       </div>
     </div>
   );

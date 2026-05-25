@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../api/axios";
-
-const apiOrigin = () => {
-  const base = axios.defaults.baseURL || "";
-  return base.replace(/\/api\/?$/, "") || "http://localhost:5000";
-};
+import { assetUrl } from "../../config/api.js";
 
 export default function PublicStallBooking() {
   const { eventId } = useParams();
@@ -45,9 +41,7 @@ export default function PublicStallBooking() {
 
   const layoutSrc = useMemo(() => {
     if (!info?.stallLayoutImage) return "";
-    const p = info.stallLayoutImage;
-    if (p.startsWith("http")) return p;
-    return `${apiOrigin()}${p}`;
+    return assetUrl(info.stallLayoutImage);
   }, [info?.stallLayoutImage]);
 
   const sendOtp = async () => {
