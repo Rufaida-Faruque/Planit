@@ -7,9 +7,8 @@
 
 **Repository:** [github.com/Rufaida-Faruque/Planit](https://github.com/Rufaida-Faruque/Planit)
 
-Full-stack event planning marketplace — clients hire verified vendors, manage events end-to-end, and run public guest flows (signup, stalls, photo sharing) with real-time notifications and simulated payments.
+Full-stack event planning marketplace where clients hire verified vendors, manage events end-to-end, and run public guest flows (signup, stalls, photo sharing) with real-time notifications and simulated payments.
 
-> **CV highlight:** 25+ integrated features across React dashboards, Express REST API, MongoDB, JWT auth, Multer uploads, Nodemailer, SSE (real-time), PDF invoices, and ZIP photo archives.
 
 ---
 
